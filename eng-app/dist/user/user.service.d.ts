@@ -1,16 +1,11 @@
 export declare class UserService {
     getUsers(): {
         _id: string;
-        isActive: boolean;
-        balance: string;
-        picture: string;
-        age: number;
-        eyeColor: string;
         name: string;
+        age: number;
         gender: string;
-        company: string;
+        isActive: boolean;
         email: string;
         phone: string;
-        address: string;
     }[];
 }
