@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { users } from '../moks';
-
+import { User } from 'src/interfaces/user.interface';
+import { users } from 'src/moks';
 @Injectable()
 export class UserService {
+    private readonly users: User[] = users;
+
     getUsers() {
-        return users;
+        return this.users;
     }
 }
