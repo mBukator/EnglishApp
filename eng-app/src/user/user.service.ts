@@ -6,10 +6,10 @@ import { NoDataExeption } from './user.exeptions';
 
 @Injectable()
 export class UserService {
-    private readonly users: User[] = users;
+    private readonly users: User[] = null;
     @UseFilters(new NoDataExeptionFilter())
     getUsers() {
-        if(users == null) {
+        if(this.users == null) {
             throw new NoDataExeption();
         }
         return this.users;
