@@ -5,4 +5,5 @@ export class User {
     isActive: boolean;
     email: string;
     phone: string;
+    password: string;
 }
