@@ -3,14 +3,6 @@ import { UserService } from './user.service';
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
-    getUsers(): {
-        _id: string;
-        name: string;
-        age: number;
-        gender: string;
-        isActive: boolean;
-        email: string;
-        phone: string;
-    }[];
+    getUsers(): import("./interfaces/user.interface").User[];
     createUSer(createUserDTO: CreateUserDTO): Promise<any>;
 }

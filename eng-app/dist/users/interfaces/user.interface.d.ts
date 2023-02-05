@@ -1,10 +1,9 @@
-export declare const users: {
+export declare class User {
     _id: string;
     name: string;
     age: number;
-    gender: string;
     isActive: boolean;
     email: string;
     phone: string;
     password: string;
-}[];
+}
