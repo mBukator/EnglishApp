@@ -11,13 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
-const moks_1 = require("../moks");
+const user_interface_1 = require("./interfaces/user.interface");
 const user_filter_1 = require("./user.filter");
 const user_exeptions_1 = require("./user.exeptions");
-const user_entitiy_1 = require("./user.entitiy");
 let UserService = class UserService {
     constructor() {
-        this.users = moks_1.users;
+        this.users = [];
     }
     getUsers() {
         if (this.users == null) {
@@ -26,9 +25,10 @@ let UserService = class UserService {
         return this.users;
     }
     async createUser(createUserDTO) {
-        const newUser = new user_entitiy_1.UserEntity();
+        const newUser = new user_interface_1.User();
         Object.assign(newUser, createUserDTO);
         console.log('newUser', newUser);
+        this.users.push(newUser);
         return createUserDTO;
     }
 };

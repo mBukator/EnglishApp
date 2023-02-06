@@ -1,7 +1,7 @@
 
 import { Injectable,UseFilters } from '@nestjs/common';
 import { User } from './interfaces/user.interface';
-import { users } from 'src/moks';
+//import { users } from 'src/moks';
 import { CreateUserDTO } from './dto/createUser.dto';
 import { NoDataExeptionFilter } from './user.filter';
 import { NoDataExeption } from './user.exeptions';
@@ -9,7 +9,7 @@ import { UserEntity } from './user.entitiy';
 
 @Injectable()
 export class UserService {
-    private readonly users: User[] = users;
+    private users: User[] = [];
     
     @UseFilters(new NoDataExeptionFilter())
     getUsers() {
@@ -20,9 +20,11 @@ export class UserService {
     }
 
     async createUser(createUserDTO: CreateUserDTO) {
-        const newUser = new UserEntity();
+        //const newUser = new UserEntity();
+        const newUser = new User();
         Object.assign(newUser, createUserDTO)
         console.log('newUser', newUser);
+        this.users.push(newUser);
         return createUserDTO;
     }
 }
