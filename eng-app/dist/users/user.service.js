@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const moks_1 = require("../moks");
 const user_filter_1 = require("./user.filter");
 const user_exeptions_1 = require("./user.exeptions");
+const user_entitiy_1 = require("./user.entitiy");
 let UserService = class UserService {
     constructor() {
         this.users = moks_1.users;
@@ -25,6 +26,9 @@ let UserService = class UserService {
         return this.users;
     }
     async createUser(createUserDTO) {
+        const newUser = new user_entitiy_1.UserEntity();
+        Object.assign(newUser, createUserDTO);
+        console.log('newUser', newUser);
         return createUserDTO;
     }
 };

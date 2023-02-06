@@ -5,6 +5,7 @@ import { users } from 'src/moks';
 import { CreateUserDTO } from './dto/createUser.dto';
 import { NoDataExeptionFilter } from './user.filter';
 import { NoDataExeption } from './user.exeptions';
+import { UserEntity } from './user.entitiy';
 
 @Injectable()
 export class UserService {
@@ -19,6 +20,9 @@ export class UserService {
     }
 
     async createUser(createUserDTO: CreateUserDTO) {
+        const newUser = new UserEntity();
+        Object.assign(newUser, createUserDTO)
+        console.log('newUser', newUser);
         return createUserDTO;
     }
 }
