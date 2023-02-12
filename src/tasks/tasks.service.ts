@@ -25,6 +25,9 @@ export class TasksService {
   }
 
   async getOne(id: number) {
+    if(this.tasks == null) {
+      throw new NoDataExeption();
+    }
     for(var i = 0; i < this.tasks.length; i++) {
       if(tasks[i]._id === id)
         return tasks[i];
@@ -32,7 +35,22 @@ export class TasksService {
     return "null";
   }
 
+  async getMemberTask(id: number) {
+    if(this.tasks == null) {
+      throw new NoDataExeption();
+    }
+    let memberTasks = [];
+    for(var i = 0; i < this.tasks.length; i++) {
+      if(tasks[i].membersId.indexOf(id) !== -1)
+        memberTasks.push(tasks[i])
+    }
+    return memberTasks;
+  }
+
   async getOneTask(id: number) {
+    if(this.tasks == null) {
+      throw new NoDataExeption();
+    }
     for(var i = 0; i < this.tasks.length; i++) {
       if(tasks[i]._id === id)
         return [i, tasks[i]];
