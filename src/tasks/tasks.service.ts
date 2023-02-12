@@ -1,26 +1,57 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseFilters } from '@nestjs/common';
+import { tasks } from 'src/moks/tasks';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { Task } from './entities/task.entity';
+import { NoDataExeption } from './tasks.exeptions';
+import { NoDataExeptionFilter } from './tasks.filter';
 
 @Injectable()
 export class TasksService {
-  create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+  private tasks: Task[] = tasks;
+
+  async createTask(createTaskDto: CreateTaskDto) {
+    console.log('newTask', createTaskDto);
+    this.tasks.push(createTaskDto);
+    return createTaskDto;
   }
 
-  findAll() {
-    return `This action returns all tasks`;
+  @UseFilters(new NoDataExeptionFilter())
+  async getTasks() {
+    if(this.tasks == null) {
+      throw new NoDataExeption();
+    }
+    return this.tasks;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  async getOne(id: number) {
+    for(var i = 0; i < this.tasks.length; i++) {
+      if(tasks[i]._id === id)
+        return tasks[i];
+    }
+    return "null";
   }
 
-  update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+  async getOneTask(id: number) {
+    for(var i = 0; i < this.tasks.length; i++) {
+      if(tasks[i]._id === id)
+        return [i, tasks[i]];
+    }
+    return "null";
+  }
+ 
+  async updateTasks(id: number, updateTaskDto: UpdateTaskDto) {
+    let get = this.getOneTask(id);
+    let toUpdate = (await get).at(1);
+    let updated = Object.assign(toUpdate, updateTaskDto);
+    return updated;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} task`;
+  async removeTask(id: number) {
+    let get = this.getOneTask(id);
+    let toRemove = (await get).at(0);
+    if(toRemove == 0)
+      return this.tasks.splice(+toRemove, +toRemove+1);
+      return this.tasks.splice(+toRemove, +toRemove);
   }
 }
