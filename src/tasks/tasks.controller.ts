@@ -22,6 +22,11 @@ export class TasksController {
     return this.tasksService.getOne(+id);
   }
 
+  @Get(':id/involved-in')
+  async getMemberTask(@Param('id') id: string) {
+    return this.tasksService.getMemberTask(+id);
+  }
+
   @Patch(':id')
   async updateTasks(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
     return this.tasksService.updateTasks(+id, updateTaskDto);
