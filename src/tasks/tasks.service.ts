@@ -24,6 +24,7 @@ export class TasksService {
     return this.tasks;
   }
 
+  @UseFilters(new NoDataExeptionFilter())
   async getOne(id: number) {
     if(this.tasks == null) {
       throw new NoDataExeption();
@@ -35,6 +36,7 @@ export class TasksService {
     return "null";
   }
 
+  @UseFilters(new NoDataExeptionFilter())
   async getMemberTask(id: number) {
     if(this.tasks == null) {
       throw new NoDataExeption();
@@ -46,7 +48,8 @@ export class TasksService {
     }
     return memberTasks;
   }
-
+  
+  @UseFilters(new NoDataExeptionFilter())
   async getOneTask(id: number) {
     if(this.tasks == null) {
       throw new NoDataExeption();
