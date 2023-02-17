@@ -1,6 +1,5 @@
 import { Room } from "src/room/room.entity";
 
-// Mock data for the rooms
 export const ROOMS: Room[] = [
   {
     _id: 1,
