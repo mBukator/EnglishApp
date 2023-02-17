@@ -48,7 +48,7 @@ export class TasksService {
     }
     return memberTasks;
   }
-  
+
   @UseFilters(new NoDataExeptionFilter())
   async getOneTask(id: number) {
     if(this.tasks == null) {
@@ -71,8 +71,6 @@ export class TasksService {
   async removeTask(id: number) {
     let get = this.getOneTask(id);
     let toRemove = (await get).at(0);
-    if(toRemove == 0)
-      return this.tasks.splice(+toRemove, +toRemove+1);
-      return this.tasks.splice(+toRemove, +toRemove);
+    return this.tasks.splice(+toRemove, 1);
   }
 }
