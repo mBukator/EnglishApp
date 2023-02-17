@@ -9,7 +9,7 @@ export class RoomNotFoundExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
 
     response
-      .status(HttpStatus.NOT_)
+      .status(HttpStatus.NOT_FOUND)
       .json({
         statusCode: HttpStatus.NOT_FOUND,
         message: exception.message,
