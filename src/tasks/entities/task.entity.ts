@@ -13,9 +13,9 @@ export class Task {
     @Column({length:30})
     name: string
 
-    @Column({length:200})
+    @Column({length:500})
     description: string
-    //@TO-DO change to work with BD
+
     @Column()
     membersId: string
 }

@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
+import { cards } from 'src/moks/cards';
 import { CreateCardDto } from './dto/create-card.dto';
 import { UpdateCardDto } from './dto/update-card.dto';
+import { Card } from './entities/card.entity';
 
 @Injectable()
 export class CardsService {
-  create(createCardDto: CreateCardDto) {
-    return 'This action adds a new card';
+  private cards: Card[] = cards;
+  async create(createCardDto: CreateCardDto) {
+    console.log('newTask', createCardDto);
+    this.cards.push(createCardDto);
+    return createCardDto;
   }
 
-  findAll() {
-    return `This action returns all cards`;
+  async findAll() {
+    return this.cards;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} card`;
+  async findOne(id: number) {
+    for(var i = 0; i < this.cards.length; i++) {
+      if(this.cards[i]._id === id)
+        return this.cards[i];
+    }
+    return "null";
   }
 
-  update(id: number, updateCardDto: UpdateCardDto) {
-    return `This action updates a #${id} card`;
+  async update(id: number, updateCardDto: UpdateCardDto) {
+    let toUpdate = this.findOne(id);
+    let updated = Object.assign(toUpdate, updateCardDto);
+    return updated;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} card`;
+  async remove(id: number) {
+    let toRemove = this.findOne(id);
+    return this.cards.splice(+toRemove, 1);
   }
 }
