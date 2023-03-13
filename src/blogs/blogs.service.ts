@@ -8,6 +8,7 @@ import { Blog } from './entities/blog.entity';
 export class BlogsService {
   private blogs: Blog[] = blogs;
   async create(createBlogDto: CreateBlogDto) {
+    createBlogDto._id = blogs.length+1
     console.log('newBlog', createBlogDto);
     this.blogs.push(createBlogDto);
     return createBlogDto;
@@ -22,17 +23,19 @@ export class BlogsService {
       if(this.blogs[i]._id === id)
         return this.blogs[i];
     }
-    return "null";
+    return null
   }
 
   async update(id: number, updateBlogDto: UpdateBlogDto) {
     let toUpdate = this.findOne(id);
-    let updated = Object.assign(toUpdate, updateBlogDto);
+    let updated = Object.assign(await toUpdate, updateBlogDto);
     return updated;
-  }
+  } 
 
   async remove(id: number) {
     let toRemove = this.findOne(id);
-    return this.blogs.splice(+toRemove, 1);
+    if (await toRemove != null) {
+      return this.blogs.splice(blogs.indexOf(await toRemove), 1);
+    }
   }
 }

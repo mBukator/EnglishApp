@@ -7,12 +7,12 @@ import { UpdateBlogDto } from './dto/update-blog.dto';
 export class BlogsController {
   constructor(private readonly blogsService: BlogsService) {}
 
-  @Post()
+  @Post('create-blog')
   create(@Body() createBlogDto: CreateBlogDto) {
     return this.blogsService.create(createBlogDto);
   }
 
-  @Get()
+  @Get('get-all-blogs')
   findAll() {
     return this.blogsService.findAll();
   }

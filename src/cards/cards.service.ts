@@ -8,6 +8,7 @@ import { Card } from './entities/card.entity';
 export class CardsService {
   private cards: Card[] = cards;
   async create(createCardDto: CreateCardDto) {
+    createCardDto._id = cards.length+1
     console.log('newCard', createCardDto);
     this.cards.push(createCardDto);
     return createCardDto;
@@ -22,17 +23,19 @@ export class CardsService {
       if(this.cards[i]._id === id)
         return this.cards[i];
     }
-    return "null";
+    return null;
   }
 
   async update(id: number, updateCardDto: UpdateCardDto) {
     let toUpdate = this.findOne(id);
-    let updated = Object.assign(toUpdate, updateCardDto);
+    let updated = Object.assign(await toUpdate, updateCardDto);
     return updated;
   }
 
   async remove(id: number) {
     let toRemove = this.findOne(id);
-    return this.cards.splice(+toRemove, 1);
+    if (await toRemove != null) {
+      return this.cards.splice(cards.indexOf(await toRemove), 1);
+    }
   }
 }

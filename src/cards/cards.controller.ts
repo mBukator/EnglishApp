@@ -15,7 +15,7 @@ export class CardsController {
   @Get('get-all-cards')
   findAll() {
     return this.cardsService.findAll();
-  }
+  } 
 
   @Get(':id')
   findOne(@Param('id') id: string) {
