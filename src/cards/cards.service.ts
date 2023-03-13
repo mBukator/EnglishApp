@@ -8,7 +8,7 @@ import { Card } from './entities/card.entity';
 export class CardsService {
   private cards: Card[] = cards;
   async create(createCardDto: CreateCardDto) {
-    console.log('newTask', createCardDto);
+    console.log('newCard', createCardDto);
     this.cards.push(createCardDto);
     return createCardDto;
   }
