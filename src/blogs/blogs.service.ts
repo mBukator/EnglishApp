@@ -1,5 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseFilters } from '@nestjs/common';
 import { blogs } from 'src/moks/blogs';
+import { NoDataExeption } from './blogs.exeptions';
+import { NoDataExeptionFilter } from './blogs.filter';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { Blog } from './entities/blog.entity';
@@ -14,11 +16,19 @@ export class BlogsService {
     return createBlogDto;
   }
 
+  @UseFilters(new NoDataExeptionFilter())
   async findAll() {
+    if(this.blogs == null) {
+      throw new NoDataExeption();
+    }
     return this.blogs;
   }
-
+  
+  @UseFilters(new NoDataExeptionFilter())
   async findOne(id: number) {
+    if(this.blogs == null) {
+      throw new NoDataExeption();
+    }
     for(var i = 0; i < this.blogs.length; i++) {
       if(this.blogs[i]._id === id)
         return this.blogs[i];
