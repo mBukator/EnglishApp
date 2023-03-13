@@ -26,12 +26,12 @@ export class TasksService {
 
   @UseFilters(new NoDataExeptionFilter())
   async getOne(id: number) {
-    if(this.tasks == null) {
+    if(this.tasks == null) { 
       throw new NoDataExeption();
     }
     for(var i = 0; i < this.tasks.length; i++) {
-      if(tasks[i]._id === id)
-        return tasks[i];
+      if(this.tasks[i]._id === id)
+        return this.tasks[i];
     }
     return "null";
   }
@@ -43,7 +43,7 @@ export class TasksService {
     }
     let memberTasks = [];
     for(var i = 0; i < this.tasks.length; i++) {
-      if(tasks[i].membersId.indexOf(id) !== -1)
+      if(JSON.parse((this.tasks[i].membersId)).indexOf(id) !== -1)
         memberTasks.push(tasks[i])
     }
     return memberTasks;
@@ -55,8 +55,8 @@ export class TasksService {
       throw new NoDataExeption();
     }
     for(var i = 0; i < this.tasks.length; i++) {
-      if(tasks[i]._id === id)
-        return [i, tasks[i]];
+      if(this.tasks[i]._id === id)
+        return [i, this.tasks[i]];
     }
     return "null";
   }

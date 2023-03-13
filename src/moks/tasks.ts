@@ -4,7 +4,7 @@ export var tasks = [
         "creatorId": "3",
         "name": "English1",
         "description": "something...",
-        "membersId": [1,2,3],
+        "membersId": '[1,2,3]',
     },
     {
 
@@ -12,7 +12,7 @@ export var tasks = [
         "creatorId": "2",
         "name": "English2",
         "description": "something...",
-        "membersId": [1,3]
+        "membersId": '[1,3]'
     
     },
     {
@@ -20,7 +20,7 @@ export var tasks = [
         "creatorId": "4",
         "name": "English3",
         "description": "something...",
-        "membersId": [1,2,3],
+        "membersId": '[1,2,3]',
     },
     {
 
@@ -28,7 +28,7 @@ export var tasks = [
         "creatorId": "5",
         "name": "English4",
         "description": "something...",
-        "membersId": [1,3]
+        "membersId": '[1,3]'
     
     },
     {
@@ -36,7 +36,7 @@ export var tasks = [
         "creatorId": "6",
         "name": "English5",
         "description": "something...",
-        "membersId": [1,2,3],
+        "membersId": '[1,2,3]',
     },
     {
 
@@ -44,7 +44,7 @@ export var tasks = [
         "creatorId": "7",
         "name": "English6",
         "description": "something...",
-        "membersId": [1,3]
+        "membersId": '[1,3]'
     
     }
 ]

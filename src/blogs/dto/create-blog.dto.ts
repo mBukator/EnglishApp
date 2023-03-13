@@ -1,7 +1,7 @@
-export class CreateTaskDto {
-    readonly _id: number;
+export class CreateBlogDto {
+    _id: number;
     readonly creatorId: string;
     readonly name: string;
     readonly description: string;
-    readonly membersId: string;
+    readonly content: string;
 }
