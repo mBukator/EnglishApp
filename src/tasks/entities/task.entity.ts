@@ -10,12 +10,12 @@ export class Task {
     @Column()
     creatorId: string
 
-    @Column()
+    @Column({length:30})
     name: string
 
-    @Column()
+    @Column({length:200})
     description: string
-
+    //@TO-DO change to work with BD
     @Column()
-    membersId: number[]
+    membersId: string
 }
